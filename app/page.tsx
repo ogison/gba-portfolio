@@ -39,12 +39,8 @@ export default function Home() {
     if (isOn) {
       playStartupSound();
       setBootPhase(1);
-      const timer1 = setTimeout(() => {
-        setBootPhase(2);
-      }, 1000);
-      const timer2 = setTimeout(() => {
-        setBootPhase(3);
-      }, 2000);
+      const timer1 = setTimeout(() => setBootPhase(2), 1000);
+      const timer2 = setTimeout(() => setBootPhase(3), 2000);
       const timer3 = setTimeout(() => {
         setBootPhase(4);
         setShowText(true);
@@ -97,7 +93,7 @@ export default function Home() {
       case 1:
         return (
           <div className="absolute inset-0 bg-black flex items-center justify-center">
-            <div className="text-[#8F7FD4] text-base sm:text-xl power-on">
+            <div className="text-[#8F7FD4] text-sm sm:text-lg md:text-xl power-on">
               POWER ON
             </div>
           </div>
@@ -114,7 +110,7 @@ export default function Home() {
         return (
           <div className="absolute inset-0 bg-black flex items-center justify-center">
             <div 
-              className="text-[#9BBC0F] text-base sm:text-xl glitch"
+              className="text-[#9BBC0F] text-base sm:text-lg md:text-xl glitch"
               data-text="PORTFOLIO"
             >
               PORTFOLIO
@@ -123,28 +119,28 @@ export default function Home() {
         );
       case 4:
         return (
-          <div className="text-center w-[640px] mx-auto">
+          <div className="text-center w-full max-w-md sm:max-w-lg md:max-w-xl mx-auto">
             {showText && (
               <div className="space-y-4 fade-in">
-                <h2 className="text-[#9BBC0F] text-xl mb-4">PROJECTS</h2>
+                <h2 className="text-[#9BBC0F] text-lg sm:text-xl mb-4">PROJECTS</h2>
                 <div className="relative">
-                  <div className="bg-[#1E1B2E] p-6 pixel-corners">
-                    <div className="aspect-video mb-4 overflow-hidden w-[400px] mx-auto">
+                  <div className="bg-[#1E1B2E] p-4 sm:p-6 pixel-corners">
+                    <div className="aspect-video mb-4 overflow-hidden w-full max-w-[400px] mx-auto">
                       <img
                         src={portfolioItems[selectedIndex].image}
                         alt={portfolioItems[selectedIndex].title}
                         className="w-full h-full object-cover pixel-image"
                       />
                     </div>
-                    <h3 className="text-[#8F7FD4] mb-4 text-base">{portfolioItems[selectedIndex].title}</h3>
-                    <p className="text-[#9BBC0F] text-sm whitespace-pre-line">{portfolioItems[selectedIndex].description}</p>
+                    <h3 className="text-[#8F7FD4] mb-4 text-sm sm:text-base">{portfolioItems[selectedIndex].title}</h3>
+                    <p className="text-[#9BBC0F] text-xs sm:text-sm whitespace-pre-line">{portfolioItems[selectedIndex].description}</p>
                     <div className="mt-4 flex justify-center space-x-4">
                       <span className="text-[#8F7FD4] text-sm">
                         {selectedIndex + 1} / {portfolioItems.length}
                       </span>
                     </div>
                   </div>
-                  <p className="blink mt-4 text-[#9BBC0F] text-sm">{"<・>: Navigate | PRESS A・B: Open Project"}</p>
+                  <p className="blink mt-4 text-[#9BBC0F] text-xs sm:text-sm">{"<・>: Navigate | PRESS A・B: Open Project"}</p>
                 </div>
               </div>
             )}
@@ -158,32 +154,32 @@ export default function Home() {
   return (
     <>
       <div className="scanlines" />
-      <main className="min-h-screen p-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="gba-screen-frame p-8">
+      <main className="min-h-screen p-4 sm:p-8">
+        <div className="max-w-full sm:max-w-4xl mx-auto">
+          <div className="gba-screen-frame p-4 sm:p-8">
             {/* Top Section */}
-            <div className="flex justify-between items-center mb-8">
-              <h1 className="text-[#9BBC0F] text-2xl tracking-wider">PORTFOLIO</h1>
+            <div className="flex justify-between items-center mb-4 sm:mb-8">
+              <h1 className="text-[#9BBC0F] text-xl sm:text-2xl tracking-wider">PORTFOLIO</h1>
               <button
                 onClick={() => setIsOn(!isOn)}
-                className="gba-button p-4 hover:opacity-90 transition-opacity"
+                className="gba-button p-3 sm:p-4 hover:opacity-90 transition-opacity"
               >
-                <Power className="w-6 h-6 text-[#8F7FD4]" />
+                <Power className="w-5 h-5 sm:w-6 sm:h-6 text-[#8F7FD4]" />
               </button>
             </div>
 
             {/* Screen Section */}
-            <div className="bg-black p-4 pixel-corners mb-8">
-              <div className="border-4 border-[#4A3B78] p-6 h-[540px] relative overflow-hidden">
+            <div className="bg-black p-2 sm:p-4 pixel-corners mb-4 sm:mb-8">
+              <div className="border-4 border-[#4A3B78] p-4 sm:p-6 h-[400px] sm:h-[540px] relative overflow-hidden">
                 {renderBootScreen()}
               </div>
             </div>
 
             {/* Controller Section */}
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
               <div className="gba-dpad p-4 pixel-corners">
-                <div className="flex justify-center items-center h-24">
-                  <div className="grid grid-cols-3 gap-2 w-20 h-20">
+                <div className="flex justify-center items-center h-20 sm:h-24">
+                  <div className="grid grid-cols-3 gap-2 w-16 sm:w-20 h-16 sm:h-20">
                     <div className="col-start-2">
                       <button
                         onClick={handlePrevious}
@@ -204,16 +200,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="gba-dpad p-4 pixel-corners">
-                <div className="grid grid-cols-2 gap-4 h-24 place-content-center">
+                <div className="grid grid-cols-2 gap-4 h-20 sm:h-24 place-content-center">
                   <button
                     onClick={handleSelect}
-                    className="gba-button p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
+                    className="gba-button p-3 sm:p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
                   >
                     A
                   </button>
                   <button
                     onClick={handleSelect}
-                    className="gba-button p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
+                    className="gba-button p-3 sm:p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
                   >
                     B
                   </button>
