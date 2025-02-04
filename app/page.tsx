@@ -7,24 +7,24 @@ import { useSoundEffect } from "@/hooks/use-sound-effect";
 const portfolioItems = [
   {
     id: 1,
-    title: "ウェブアプリ",
-    description: "React/Next.jsを使用したモダンなウェブアプリケーション開発",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400&h=300",
-    url: "https://github.com/yourusername/web-projects"
+    title: "AI Selector",
+    description: "Geminiが物事を独断と偏見で決めてくれるアプリ",
+    image: "/AI_Selector.png",
+    url: "https://gemini-selection.vercel.app/home"
   },
   {
     id: 2,
-    title: "モバイルアプリ",
-    description: "React Nativeを使用したクロスプラットフォームアプリ開発",
-    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=400&h=300",
-    url: "https://github.com/yourusername/mobile-projects"
+    title: "Spotify プレイリスト作成アプリ",
+    description: "アーティスト選ぶだけで人気曲を一気に追加してプレイリストを作成できます。\n※APIの都合上、作成者以外は検索しかできません。",
+    image: "/Spotify.png",
+    url: "https://playlister-x.vercel.app/"
   },
   {
     id: 3,
-    title: "ゲーム開発",
-    description: "Unityを使用した2D/3Dゲーム開発",
-    image: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=400&h=300",
-    url: "https://github.com/yourusername/game-projects"
+    title: "Notion 英単語アプリ",
+    description: "Notionのデータベースと連携して英単語がランダムに出現します。",
+    image: "/English.png", 
+    url: "https://notion-english-wordbook.vercel.app/"
   },
 ];
 
@@ -137,14 +137,14 @@ export default function Home() {
                       />
                     </div>
                     <h3 className="text-[#8F7FD4] mb-4 text-base">{portfolioItems[selectedIndex].title}</h3>
-                    <p className="text-[#9BBC0F] text-sm">{portfolioItems[selectedIndex].description}</p>
+                    <p className="text-[#9BBC0F] text-sm whitespace-pre-line">{portfolioItems[selectedIndex].description}</p>
                     <div className="mt-4 flex justify-center space-x-4">
                       <span className="text-[#8F7FD4] text-sm">
                         {selectedIndex + 1} / {portfolioItems.length}
                       </span>
                     </div>
                   </div>
-                  <p className="blink mt-4 text-[#9BBC0F] text-sm">A・B: Navigate | PRESS START: Open Project</p>
+                  <p className="blink mt-4 text-[#9BBC0F] text-sm">{"<・>: Navigate | PRESS A・B: Open Project"}</p>
                 </div>
               </div>
             )}
@@ -174,7 +174,7 @@ export default function Home() {
 
             {/* Screen Section */}
             <div className="bg-black p-4 pixel-corners mb-8">
-              <div className="border-4 border-[#4A3B78] p-6 h-[480px] relative overflow-hidden">
+              <div className="border-4 border-[#4A3B78] p-6 h-[540px] relative overflow-hidden">
                 {renderBootScreen()}
               </div>
             </div>
@@ -204,21 +204,15 @@ export default function Home() {
                 </div>
               </div>
               <div className="gba-dpad p-4 pixel-corners">
-                <div className="grid grid-cols-3 gap-4 h-24 place-content-center">
+                <div className="grid grid-cols-2 gap-4 h-24 place-content-center">
                   <button
-                    onClick={handlePrevious}
+                    onClick={handleSelect}
                     className="gba-button p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
                   >
                     A
                   </button>
                   <button
                     onClick={handleSelect}
-                    className="bg-[#8F7FD4] p-4 rounded text-[#1E1B2E] hover:opacity-90 transition-opacity"
-                  >
-                    START
-                  </button>
-                  <button
-                    onClick={handleNext}
                     className="gba-button p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
                   >
                     B
