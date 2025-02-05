@@ -3,8 +3,14 @@
 import { TowerControl as GameController, Power, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSoundEffect } from "@/hooks/use-sound-effect";
+import ABButton from "@/components/ui/ab-button";
+import Init1 from "@/components/monitor-screen/init-1";
+import Init2 from "@/components/monitor-screen/init-2";
+import Init3 from "@/components/monitor-screen/init-3";
+import { PortfolioItem } from "@/types";
+import PortfolioScreen from "@/components/monitor-screen/portfolio-screen";
 
-const portfolioItems = [
+const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     title: "AI Selector",
@@ -91,61 +97,13 @@ export default function Home() {
 
     switch (bootPhase) {
       case 1:
-        return (
-          <div className="absolute inset-0 bg-black flex items-center justify-center">
-            <div className="text-[#8F7FD4] text-sm sm:text-lg md:text-xl power-on">
-              POWER ON
-            </div>
-          </div>
-        );
+        <Init1 />
       case 2:
-        return (
-          <div className="absolute inset-0 bg-black flex items-center justify-center">
-            <div className="text-[#9BBC0F] text-xs sm:text-sm fade-in font-mono">
-              INITIALIZING...
-            </div>
-          </div>
-        );
+        <Init2 />
       case 3:
-        return (
-          <div className="absolute inset-0 bg-black flex items-center justify-center">
-            <div 
-              className="text-[#9BBC0F] text-base sm:text-lg md:text-xl glitch"
-              data-text="PORTFOLIO"
-            >
-              PORTFOLIO
-            </div>
-          </div>
-        );
+        <Init3 />
       case 4:
-        return (
-          <div className="text-center w-full max-w-md sm:max-w-lg md:max-w-xl mx-auto">
-            {showText && (
-              <div className="space-y-4 fade-in">
-                <h2 className="text-[#9BBC0F] text-lg sm:text-xl mb-4">PROJECTS</h2>
-                <div className="relative">
-                  <div className="bg-[#1E1B2E] p-4 sm:p-6 pixel-corners">
-                    <div className="aspect-video mb-4 overflow-hidden w-full max-w-[400px] mx-auto">
-                      <img
-                        src={portfolioItems[selectedIndex].image}
-                        alt={portfolioItems[selectedIndex].title}
-                        className="w-full h-full object-cover pixel-image"
-                      />
-                    </div>
-                    <h3 className="text-[#8F7FD4] mb-4 text-sm sm:text-base">{portfolioItems[selectedIndex].title}</h3>
-                    <p className="text-[#9BBC0F] text-xs sm:text-sm whitespace-pre-line">{portfolioItems[selectedIndex].description}</p>
-                    <div className="mt-4 flex justify-center space-x-4">
-                      <span className="text-[#8F7FD4] text-sm">
-                        {selectedIndex + 1} / {portfolioItems.length}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="blink mt-4 text-[#9BBC0F] text-xs sm:text-sm">{"<・>: Navigate | PRESS A・B: Open Project"}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        );
+        <PortfolioScreen showText={showText} portfolioItems={portfolioItems} selectedIndex={selectedIndex}/>
       default:
         return <div className="absolute inset-0 bg-black" />;
     }
@@ -201,18 +159,8 @@ export default function Home() {
               </div>
               <div className="gba-dpad p-4 pixel-corners">
                 <div className="grid grid-cols-2 gap-4 h-20 sm:h-24 place-content-center">
-                  <button
-                    onClick={handleSelect}
-                    className="gba-button p-3 sm:p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
-                  >
-                    A
-                  </button>
-                  <button
-                    onClick={handleSelect}
-                    className="gba-button p-3 sm:p-4 text-[#9BBC0F] hover:opacity-90 transition-opacity"
-                  >
-                    B
-                  </button>
+                  <ABButton label="A" onClick={handleSelect}/>
+                  <ABButton label="B" onClick={handleSelect}/>
                 </div>
               </div>
             </div>
